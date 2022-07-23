@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+		<head th:replace="layouts :: header"></head>
+		
+		<body>
+		
+		<nav th:replace="layouts :: navbar"></nav>
+		
+			<div class="container">
+				<h3>All Employees </h3>
+				<hr>
+				
+				<!-- Add New Employee Button -->
+				
+				<a th:href="@{/employees/new}"
+					class="btn btn-primary btn-sm mb-3">
+					
+					Create Employee
+				</a>
+				<br></br>
+				
+				<table class="table table-striped table-dark">
+					<thead class="thead-dark">
+						<tr>
+						
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Work Hours</th>
+							<th>Action</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="aEmployee : ${employees}">
+							<td th:text="${aEmployee.firstName}"/>
+							<td th:text="${aEmployee.lastName}"/>
+							<td th:text="${aEmployee.email}"/>
+							<td th:text="${aEmployee.workHours}"/>
+							<td>
+								<a th:href="@{/employees/update(id=${aEmployee.employeeId})}"
+								class="btn btn-info btn-sm">
+								Update
+								</a>
+								<a th:href="@{/employees/delete(id=${aEmployee.employeeId})}"
+								class="btn btn-danger btn-sm"
+								onClick="if (!(confirm('Confirm if you want to delete'))) return false">
+								Delete
+								</a>
+							</td>
+							
+						</tr>
+					
+					</tbody>
+				
+				</table>
+
+			
+			
+			
+			</div>
+		
+		
+		
+		</body>
+		
+	</html>
